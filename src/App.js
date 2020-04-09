@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useFetchData from './utils/useFecthData'
-import useIDB from './utils/useIDB'
+import EmployeeList from './components/EmployeeList'
 
 function App() {
   const { result, fetchData } = useFetchData();
@@ -9,15 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <button onClick={fetchData}>1. fetch data (from db or url ????)</button>
-        <ul>
-          {
-            result && result.map((el, i) => (
-              <li>
-                {el.last_name}
-              </li>
-            ))
-          }
-        </ul>
+        {result && <EmployeeList data={result} />}
       </header>
     </div>
   );
