@@ -4,7 +4,7 @@ import useIDB from './useIDB';
 // Check cache before requesting data...
 function useFetchData() {
   const [result, setResult] = useState(null);
-  const { addDB, openDB, DBEntries } = useIDB();
+  const { addDB, DBEntries } = useIDB();
 
   let H = new Headers();
   let encode = window.btoa(`${process.env.USERNAME}:${process.env.PASSWORD}`)
@@ -13,10 +13,6 @@ function useFetchData() {
     method: 'GET',
     headers: H,
   });
-
-  useEffect(() => {
-    openDB(); // test 
-  }, []);
 
   async function fetchData() {
     console.log('get db data before fetching', DBEntries)

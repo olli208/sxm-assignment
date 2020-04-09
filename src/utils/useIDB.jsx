@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function useIDB() {
   let db;
   const [DBEntries, setDBEntries] = useState([]);
+
+  useEffect(() => {
+    openDB(); // test 
+  }, []);
 
   const openDB = () => {
     const DBOpenReq = indexedDB.open('saxumers')
@@ -46,7 +50,6 @@ function useIDB() {
         cursor.continue()
       } else {
         // can cause problems, check back later...
-        console.log('ALL USERS?', users)
         setDBEntries(users)
       }
     }
