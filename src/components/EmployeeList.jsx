@@ -8,22 +8,18 @@ const ListItem = styled.li`
 `
 
 function EmployeeList({ data, filter: addedFilters }) {
-  console.log(addedFilters)
 
-  const listItems = useMemo(() => {
-    return data.filter((el, i, self) => {
-      if (addedFilters.length === 0) return self
-
-      return addedFilters.includes(el.function)
-
-    }).map((el, i) => {
+  const listItems = useMemo(() => (
+    data.filter((el, i, self) => (addedFilters.length === 0) ? self : addedFilters.includes(el.function)).map((el, i) => {
       console.log('mapped', el)
-      return <ListItem key={i}>
-        <span>{el.first_name} {el.last_name}</span>
-        <span>{el.function}</span>
-      </ListItem>
+      return (
+        <ListItem key={i}>
+          <span>{el.first_name} {el.last_name}</span>
+          <span>{el.function}</span>
+        </ListItem>
+      )
     })
-  }, [data, addedFilters]);
+  ), [data, addedFilters]);
 
   console.log('memo', listItems)
 

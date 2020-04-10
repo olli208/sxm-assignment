@@ -1,11 +1,20 @@
 import React from 'react';
 
-function FilterList({ data, setFilter }) {
+function FilterList({ data, filter, setFilter }) {
   return (
     data.map(el => {
-      return <button onClick={() => setFilter(el)}>{el}</button>
-    }
-    )
+      return (
+        <label>
+          <input
+            name="function"
+            type="checkbox"
+            checked={filter.includes(el)}
+            onChange={() => setFilter(el)}
+          />
+          {el}
+        </label>
+      )
+    })
   )
 }
 

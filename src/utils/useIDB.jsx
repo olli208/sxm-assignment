@@ -13,18 +13,18 @@ function useIDB() {
 
     DBOpenReq.onupgradeneeded = ev => {
       db = ev.target.result;
-
       db.createObjectStore('saxumers_user', { keyPath: 'id' })
-      alert('upgrade')
+      console.log('upgrade needed')
     }
 
     DBOpenReq.onsuccess = ev => {
       db = DBOpenReq.result
-      console.log(`DB ON SUCCESS ${db.name}`)
+      console.log(`DB OPEN: ${db.name}`)
       viewDB();
     }
 
     DBOpenReq.onerror = e => {
+      // todo error handling...
       console.log('err', e)
     }
   }
@@ -49,13 +49,13 @@ function useIDB() {
         users.push(cursor.value)
         cursor.continue()
       } else {
-        // can cause problems, check back later...
+        // can cause problems(?), check back later...
         setDBEntries(users)
       }
     }
   }
 
-  return { addDB, viewDB, openDB, DBEntries }
+  return { addDB, DBEntries }
 }
 
 export default useIDB;

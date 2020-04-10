@@ -6,20 +6,33 @@ import FilterList from './components/FilterList'
 function App() {
   const { result, fetchData } = useFetchData();
   const [filter, setFilter] = useState([]);
+  const [filterdResult, setFilterdResult] = useState(result)
 
   const getFilters = items => items.filter((el, i, self) => i === self.findIndex(item => item.function === el.function)).map(el => el.function)
 
   const handleFilter = newFilter => {
-    if (filter.includes(newFilter)) return
+    if (filter.includes(newFilter)) {
+      setFilter(filter.filter(e => e !== newFilter))
+      return
+    }
 
-    setFilter(oldFilter => {
-      return [...oldFilter, newFilter]
-    })
+    setFilter(oldFilter => [...oldFilter, newFilter])
   }
+
+  const handleInput = e => {
+    console.log(e.target.value)
+    const regex = new RegExp(e.target.value, 'gi')
+    setFilterdResult(() => result.filter(el => {
+      return el.function.match(regex) || el.first_name.match(regex)
+    }))
+  }
+
+  console.log('ya boi', filterdResult)
 
   return (
     <div className="App">
       <header className="App-header">
+        <input type="text" onChange={handleInput} />
         <button onClick={fetchData}>1. fetch data</button>
       </header>
 
@@ -28,9 +41,9 @@ function App() {
           <>
             <div>
               filter by:
-              <FilterList data={getFilters(result)} setFilter={handleFilter} />
+              <FilterList data={getFilters(result)} filter={filter} setFilter={handleFilter} />
             </div>
-            <EmployeeList data={result} filter={filter} />
+            <EmployeeList data={filterdResult || result} filter={filter} />
           </>
         )}
       </section>
