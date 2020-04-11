@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import useFetchData from './utils/useFecthData'
-import EmployeeList from './components/EmployeeList'
-import FilterList from './components/FilterList'
+import Header from './components/Header'
+import ResultSection from './components/ResultSection'
+import FilterSection from './components/FilterSection'
 
 function App() {
-  const { result, fetchData } = useFetchData();
+  const { data, fetchData } = useFetchData();
   const [filter, setFilter] = useState([]);
-  const [filterdResult, setFilterdResult] = useState(result)
+  const [filteredData, setFilterdData] = useState(data)
 
   const getFilters = items => items.filter((el, i, self) => i === self.findIndex(item => item.function === el.function)).map(el => el.function)
 
@@ -20,33 +21,19 @@ function App() {
   }
 
   const handleInput = e => {
-    console.log(e.target.value)
     const regex = new RegExp(e.target.value, 'gi')
-    setFilterdResult(() => result.filter(el => {
-      return el.function.match(regex) || el.first_name.match(regex)
-    }))
+    setFilterdData(() => data.filter(el => el.function.match(regex) || el.first_name.match(regex) || el.last_name.match(regex)))
   }
 
-  console.log('ya boi', filterdResult)
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <input type="text" onChange={handleInput} />
-        <button onClick={fetchData}>1. fetch data</button>
-      </header>
+    <div>
+      <Header handleInput={handleInput} fetchData={fetchData} />
 
-      <section>
-        {result && (
-          <>
-            <div>
-              filter by:
-              <FilterList data={getFilters(result)} filter={filter} setFilter={handleFilter} />
-            </div>
-            <EmployeeList data={filterdResult || result} filter={filter} />
-          </>
-        )}
-      </section>
+      {data && (
+        <ResultSection data={filteredData || data} filter={filter}>
+          <FilterSection data={getFilters(data)} handleFilter={handleFilter} filter={filter} />
+        </ResultSection>
+      )}
     </div>
   );
 }

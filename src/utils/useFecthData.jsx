@@ -3,7 +3,7 @@ import useIDB from './useIDB';
 
 // Check cache before requesting data...
 function useFetchData() {
-  const [result, setResult] = useState(null);
+  const [data, setData] = useState(null);
   const { addDB, DBEntries } = useIDB();
 
   let H = new Headers();
@@ -18,7 +18,7 @@ function useFetchData() {
     console.log('get db data before fetching', DBEntries)
     if (DBEntries.length > 0) {
       console.log('FROM IDB')
-      setResult(DBEntries)
+      setData(DBEntries)
     } else {
       try {
         const requestData = await fetch(req)
@@ -30,15 +30,15 @@ function useFetchData() {
         const json = await requestData.json();
         console.log('FROM FETCH')
         addDB(json)
-        setResult(json)
+        setData(json)
       }
       catch (error) {
-        setResult(error)
+        setData(error)
       }
     }
   };
 
-  return { result, fetchData }
+  return { data, fetchData }
 }
 
 export default useFetchData
