@@ -3,11 +3,11 @@ import useIDB from './useIDB';
 
 // Check cache before requesting data...
 function useFetchData() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const { addDB, DBEntries } = useIDB();
 
   let H = new Headers();
-  let encode = window.btoa(`${process.env.USERNAME}:${process.env.PASSWORD}`)
+  let encode = window.btoa(`${process.env.REACT_APP_USERNAME}:${process.env.REACT_APP_PASSWORD}`)
   H.append('Authorization', `Basic ${encode}`);
   let req = new Request('https://sheetdb.io/api/v1/smyv5xfvpjqeh', {
     method: 'GET',

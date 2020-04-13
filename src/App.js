@@ -25,7 +25,7 @@ function App() {
   const handleInput = e => {
     fetchData();
     const regex = new RegExp(e.target.value, 'gi')
-    setFilterdData(() => data?.filter(el => el.function.match(regex) || el.first_name.match(regex) || el.last_name.match(regex)))
+    setFilterdData(() => data.filter(el => el.function.match(regex) || el.first_name.match(regex) || el.last_name.match(regex)))
   }
 
   return (
@@ -34,7 +34,7 @@ function App() {
       <div>
         <Header handleInput={handleInput} />
 
-        {data && (
+        {data !== undefined && data.length !== 0 && (
           <ResultSection data={filteredData || data} filter={filter}>
             <FilterSection
               data={getFilters(filteredData || data)}
