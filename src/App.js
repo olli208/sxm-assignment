@@ -37,7 +37,7 @@ function App() {
         {data && (
           <ResultSection data={filteredData || data} filter={filter}>
             <FilterSection
-              data={getFilters(data)}
+              data={getFilters(filteredData || data)}
               handleFilter={handleFilter}
               filter={filter} />
           </ResultSection>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components'
 import EmployeeList from './EmployeeList';
 import FlexWrapper from './FlexWrapper';
@@ -11,17 +11,22 @@ width: 100%;
 }
 `
 
-function ResultSection({ data: result, filter, children }) {
+function ResultSection({ data, filter, children }) {
+  const listItems = useMemo(() => (
+    data.filter((el, i, self) => (filter.length === 0) ? self : filter.includes(el.function))
+  ), [data, filter]);
+
   return (
     <section>
-      {result && (
+      {data && (
         <FlexWrapper justifyContent='center'>
           <Wrapper>
             <FlexWrapper>
               {children}
             </FlexWrapper>
-            <FlexWrapper>
-              <EmployeeList data={result} filter={filter} />
+            <FlexWrapper justifyContent='flex-end'>
+              <h2><b>{listItems.length}</b> saxumers found</h2>
+              <EmployeeList data={listItems} />
             </FlexWrapper>
           </Wrapper>
         </FlexWrapper>

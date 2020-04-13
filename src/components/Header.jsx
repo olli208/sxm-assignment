@@ -8,7 +8,7 @@ const StyledHeader = styled.header`
 `
 
 const StyledLogo = styled.img`
-  margin-bottom: 1rem;
+  margin: 1.5rem 0;
 `
 
 const StyledSearchbar = styled.input`
@@ -24,7 +24,7 @@ const StyledSearchbar = styled.input`
 }
 `
 
-function Header({ handleInput }) {
+function Header({ handleInput, children }) {
   return (
     <StyledHeader>
       <FlexWrapper justifyContent='center' isFullWidth>
@@ -34,6 +34,7 @@ function Header({ handleInput }) {
             type="text"
             onChange={handleInput}
             placeholder="search by name/function" />
+          {children}
         </FlexWrapper>
       </FlexWrapper>
     </StyledHeader>

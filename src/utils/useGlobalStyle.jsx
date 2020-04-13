@@ -34,6 +34,10 @@ p, span {
   font-size: 1.3rem;
 }
 
+b {
+  color:  #11d1d1;
+}
+
 `
 
 export default GlobalStyle
