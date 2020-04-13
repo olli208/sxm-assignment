@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/sxm-assignment/static/js/main.e23a9187.chunk.js",
+    "main.js.map": "/sxm-assignment/static/js/main.e23a9187.chunk.js.map",
+    "runtime-main.js": "/sxm-assignment/static/js/runtime-main.2362bdea.js",
+    "runtime-main.js.map": "/sxm-assignment/static/js/runtime-main.2362bdea.js.map",
+    "static/js/2.25deb68f.chunk.js": "/sxm-assignment/static/js/2.25deb68f.chunk.js",
+    "static/js/2.25deb68f.chunk.js.map": "/sxm-assignment/static/js/2.25deb68f.chunk.js.map",
+    "index.html": "/sxm-assignment/index.html",
+    "precache-manifest.ed8feb1e72f6ce691b1daa38c2a4adf1.js": "/sxm-assignment/precache-manifest.ed8feb1e72f6ce691b1daa38c2a4adf1.js",
+    "service-worker.js": "/sxm-assignment/service-worker.js",
+    "static/js/2.25deb68f.chunk.js.LICENSE.txt": "/sxm-assignment/static/js/2.25deb68f.chunk.js.LICENSE.txt",
+    "static/media/saxum.jpg": "/sxm-assignment/static/media/saxum.97df8ea3.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2362bdea.js",
+    "static/js/2.25deb68f.chunk.js",
+    "static/js/main.e23a9187.chunk.js"
+  ]
+}
